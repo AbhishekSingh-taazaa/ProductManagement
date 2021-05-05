@@ -1,0 +1,27 @@
+
+
+<br>
+<br>
+<table id="tableasync" class="table table-center table-striped table-bordered" style="border: 2px solid rgb(88, 80, 80) !important;">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">TITLE</th>
+        <th scope="col">PRICE</th>
+        <th scope="col">QUANTITY</th>
+        <th scope="col">COLOR</th>
+        <th scope="col">INSTOCK</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of list | async">
+        <th scope="row">{{item.id}}</th>
+        <td>{{item.title}}</td>
+        <td>{{item.price}}</td>
+        <td>{{item.quantity}}</td>
+        <td>{{item.colour}}</td>
+        <td>{{item.inStock}}</td>
+      </tr>
+     
+    </tbody>
+  </table>

@@ -1,0 +1,47 @@
+
+  a:hover {
+    background-color: rgb(255, 255, 255);
+    color: black;
+  }
+  .toolbar {
+    background-color: #138d5a;
+    color: white;
+    font-weight: 600;
+  }
+  mat-sidenav-container {
+    height: 100%;
+  }
+  mat-sidenav-container mat-sidenav mat-nav-list .chevron-button {
+    transition: 300ms ease-in-out;
+    transform: rotate(0deg);
+    right: 0;
+    float: right;
+    position: absolute;
+    
+  }
+  mat-sidenav-container mat-sidenav mat-nav-list .chevron-button.rotated {
+    transform: rotate(180deg);
+  }
+  
+  .flexpend {
+    flex: 1 1 auto;
+  }
+  .exapmle-icon{
+    float: right;
+  }
+
+  #spanwelcome
+  {
+      margin: 0 300px;
+  }
+
+  #flexpend
+  {
+    margin: 0 130px;
+  }
+  .mat-toolbar{
+    position: sticky;
+    position: -webkit-sticky;
+    z-index: 1000;
+    top: 0;
+  }

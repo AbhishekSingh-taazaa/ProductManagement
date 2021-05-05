@@ -1,0 +1,29 @@
+<br>
+<br>
+<h1 class="removeproduct">Delete Product</h1>
+<form action="mail.php" (ngSubmit)='deleteProduct()' [formGroup]='DeleteProductForm' novalidate class="form">
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <mat-card> <div class="col-md-3">
+     
+        <div class="container">
+            <div class="row">
+             <div class="col-md-6 col-offset-2">
+                <div class="text-input">
+                  <input type="text" id="input1" formControlName="id" placeholder="Enter Id here">
+                  <label for="input1">ID</label>
+                </div>
+            </div>
+            </div>
+        </div>
+  
+    </div> 
+<mat-card-content> <button type="submit" id="findbtn" mat-raised-button>Delete</button></mat-card-content>
+</mat-card>
+    <div class="col-md-3"></div>
+
+</div>
+</form>
+<br>
+<br>

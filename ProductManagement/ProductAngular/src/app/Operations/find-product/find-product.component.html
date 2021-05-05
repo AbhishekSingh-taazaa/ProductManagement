@@ -1,0 +1,51 @@
+<br>
+<br>
+<h1 class="removeproduct">Find Product</h1>
+<form action="mail.php" (ngSubmit)='findProduct()' [formGroup]='FindProductForm' novalidate class="form">
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <mat-card> <div class="col-md-3">
+     
+        <div class="container">
+            <div class="row">
+             <div class="col-md-6 col-offset-2">
+                <div class="text-input">
+                  <input type="text" id="input1" formControlName="id" placeholder="Enter Id here">
+                  <label for="input1">ID</label>
+                </div>
+            </div>
+            </div>
+        </div>
+  
+    </div> 
+<mat-card-content> <button type="submit" id="findbtn" mat-raised-button>Find</button></mat-card-content>
+</mat-card>
+    <div class="col-md-3"></div>
+
+</div>
+</form>
+<br>
+<br>
+<table id="tableasync" class="table table-center table-striped table-bordered" style="border: 2px solid rgb(88, 80, 80) !important;">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">TITLE</th>
+        <th scope="col">PRICE</th>
+        <th scope="col">QUANTITY</th>
+        <th scope="col">COLOR</th>
+        <th scope="col">INSTOCK</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">{{product.id}}</th>
+        <td>{{product.title}}</td>
+        <td>{{product.price}}</td>
+        <td>{{product.quantity}}</td>
+        <td>{{product.colour}}</td>
+        <td>{{product.inStock}}</td>
+        </tr>
+        </tbody>
+        </table>
