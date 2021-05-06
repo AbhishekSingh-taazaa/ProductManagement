@@ -11,16 +11,26 @@
         <th scope="col">QUANTITY</th>
         <th scope="col">COLOR</th>
         <th scope="col">INSTOCK</th>
+        <th scope="col">Operation</th>
+        
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let item of list | async">
         <th scope="row">{{item.id}}</th>
-        <td>{{item.title}}</td>
-        <td>{{item.price}}</td>
-        <td>{{item.quantity}}</td>
-        <td>{{item.colour}}</td>
-        <td>{{item.inStock}}</td>
+        <th scope="row"><a [routerLink]="'/find-product/'+item.id">{{item.title}}</a></th>
+        <th scope="row">{{item.price}}</th>
+        <th scope="row">{{item.quantity}}</th>
+        <th scope="row">{{item.colour}}</th>
+        <th scope="row">{{item.inStock}}</th>
+        <th  style="width: 200px;"> <button [routerLink]="'/update-product/'+item.id"  (click)='editproduct(item.id)'  id="buttonadjust" class="b1" mat-fab color="basic" >
+          <p id="buttonadjust">Edit</p>
+        </button>
+        &nbsp; &nbsp; &nbsp;
+          <button id="buttonadjust" (click)='deleteitem(item.id)' class="b2" mat-fab color="basic" >
+            <p id="buttonadjust">Delete</p>
+          </button>
+      </th>
       </tr>
      
     </tbody>

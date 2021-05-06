@@ -1,9 +1,11 @@
 <br>
 <br>
-<h1 class="removeproduct">Find Product</h1>
 <form action="mail.php" (ngSubmit)='findProduct()' [formGroup]='FindProductForm' novalidate class="form">
+ 
+<ng-container *ngIf='visiblesearchbar'>
+<h1 class="removeproduct">Find Product</h1>
 
-<div class="row">
+<div class="row" >
     <div class="col-md-3"></div>
     <mat-card> <div class="col-md-3">
      
@@ -11,7 +13,7 @@
             <div class="row">
              <div class="col-md-6 col-offset-2">
                 <div class="text-input">
-                  <input type="text" id="input1" formControlName="id" placeholder="Enter Id here">
+                  <input type="text"  formControlName="id" placeholder="Enter Id here">
                   <label for="input1">ID</label>
                 </div>
             </div>
@@ -24,28 +26,53 @@
     <div class="col-md-3"></div>
 
 </div>
-</form>
+</ng-container>
 <br>
 <br>
-<table id="tableasync" class="table table-center table-striped table-bordered" style="border: 2px solid rgb(88, 80, 80) !important;">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">TITLE</th>
-        <th scope="col">PRICE</th>
-        <th scope="col">QUANTITY</th>
-        <th scope="col">COLOR</th>
-        <th scope="col">INSTOCK</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">{{product.id}}</th>
-        <td>{{product.title}}</td>
-        <td>{{product.price}}</td>
-        <td>{{product.quantity}}</td>
-        <td>{{product.colour}}</td>
-        <td>{{product.inStock}}</td>
-        </tr>
-        </tbody>
-        </table>
+<ng-container *ngIf="visible">
+
+        <div class="container content">
+         <mat-card>
+        
+            <div class="form-content">
+              <h2 class="text-center">Product Details</h2>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Title</span>
+                </div>
+                <input type="text" readonly class="form-control text-center" formControlName="title" aria-label="Username" aria-describedby="basic-addon1">
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Price</span>
+                </div>
+                <input type="number"  readonly class="form-control text-center" formControlName="price" >
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Quantity</span>
+                </div>
+                <input type="number" readonly class="form-control text-center" formControlName="quantity" >
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Colour</span>
+                </div>
+                <input type="text" readonly class="form-control text-center" formControlName="colour" >
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon2">In Stock</span>
+                </div>
+                <input type="text" readonly class="form-control text-center" formControlName="inStock">
+              </div>
+              <div>
+                <button  mat-raised-button class="b1"  [routerLink]="'/update-product/'+productidtoedit">Edit</button> &nbsp; &nbsp;
+                <button  mat-raised-button class="b2" >Delete</button>
+              </div>
+            </div>
+           
+        </mat-card>
+      </div>
+    </ng-container>
+  </form>

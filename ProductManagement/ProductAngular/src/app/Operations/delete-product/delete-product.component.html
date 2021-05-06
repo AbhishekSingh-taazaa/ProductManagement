@@ -1,7 +1,7 @@
 <br>
 <br>
 <h1 class="removeproduct">Delete Product</h1>
-<form action="mail.php" (ngSubmit)='deleteProduct()' [formGroup]='DeleteProductForm' novalidate class="form">
+<form action="mail.php" (ngSubmit)=' findProduct()' [formGroup]='DeleteProductForm' novalidate class="form">
 
 <div class="row">
     <div class="col-md-3"></div>
@@ -19,11 +19,56 @@
         </div>
   
     </div> 
-<mat-card-content> <button type="submit" id="findbtn" mat-raised-button>Delete</button></mat-card-content>
+<mat-card-content> <button type="submit" id="findbtn" mat-raised-button>Search</button></mat-card-content>
 </mat-card>
     <div class="col-md-3"></div>
 
 </div>
-</form>
 <br>
 <br>
+<ng-container *ngIf="visible">
+
+        <div class="container content">
+         <mat-card>
+        
+            <div class="form-content">
+            <h2 class="text-center">Product Details</h2>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Title</span>
+                </div>
+                <input type="text" readonly class="form-control text-center" formControlName="title" aria-label="Username" aria-describedby="basic-addon1">
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Price</span>
+                </div>
+                <input type="number" readonly class="form-control text-center" formControlName="price" >
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Quantity</span>
+                </div>
+                <input type="number" readonly class="form-control text-center" formControlName="quantity" >
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Colour</span>
+                </div>
+                <input type="text" readonly class="form-control text-center" formControlName="colour" >
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon2">In Stock</span>
+                </div>
+                <input type="text" readonly class="form-control text-center" formControlName="inStock">
+              </div>
+              <div class="input-group mb-3">
+                <button type="button" ma (click)='deleteProduct()'  mat-raised-button style="background-color: #555252; color: white;" class="btn btn-default">Delete</button>
+              </div>
+            </div>
+      
+        </mat-card>
+      </div>
+    </ng-container>
+  </form>

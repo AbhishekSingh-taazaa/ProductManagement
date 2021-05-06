@@ -14,6 +14,7 @@ export class DeleteProductComponent implements OnInit {
   DeleteProductForm : FormGroup;
   product : products ;
   Product$ : Observable<products>;
+  visible : boolean = false;
 
   constructor(private formBuilder: FormBuilder, private productservice:ProductServiceService,private _snackBar: MatSnackBar) {
    
@@ -24,11 +25,41 @@ export class DeleteProductComponent implements OnInit {
   ngOnInit(): void {
 
     this.DeleteProductForm = this.formBuilder.group({
-      id : [null,[Validators.required]]
+      id : [null,[Validators.required]],
+      title : [null],
+      price : [],
+      quantity : [],
+      colour :[],
+      inStock :[]
     });
       
 
   }
+
+
+  findProduct(){
+    this.Product$ = this.productservice.getProduct(this.DeleteProductForm.value.id);
+   this.Product$.subscribe(data => {
+     console.log(data);
+     console.log(typeof(data));
+     if(data)
+   {
+     
+    this.DeleteProductForm.get("title")?.setValue(data.title);
+    this.DeleteProductForm.get("price")?.setValue(data.price);
+    this.DeleteProductForm.get("quantity")?.setValue(data.quantity);
+    this.DeleteProductForm.get("colour")?.setValue(data.colour);
+    this.DeleteProductForm.get("inStock")?.setValue(data.inStock);
+    this.visible=true;
+  
+   }
+  
+   
+   });
+   this.visible=false; 
+  
+  }
+
 
   deleteProduct(){
  this.productservice.deleteProductById(this.DeleteProductForm.value.id).subscribe(data => {

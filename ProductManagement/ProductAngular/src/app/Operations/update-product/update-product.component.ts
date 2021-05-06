@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { products } from 'src/app/Product';
 import { ProductServiceService } from 'src/app/product-service.service';
 
@@ -29,13 +31,23 @@ export class UpdateProductComponent implements OnInit {
   inStockValue : boolean = false;
 
   ProductForm : FormGroup ;
-  
+  Product$ : Observable<products>;
+  visible : boolean = false;
   item : products;
+
+  productidtoedit: number;
+  idcheck : boolean
+
+  
+  Produt$Id : Observable<products>;
+  visiblesearchbar : boolean = true;
   
   min = 100;
   max = 100000;
   
-    constructor(private formBuilder: FormBuilder, private productservice:ProductServiceService,private snackbar : MatSnackBar) { }
+    constructor(private formBuilder: FormBuilder, private productservice:ProductServiceService,private snackbar : MatSnackBar,private route: ActivatedRoute) { 
+      this.Product$ = new Observable<products>();
+    }
   
     ngOnInit(): void {
   
@@ -50,7 +62,41 @@ export class UpdateProductComponent implements OnInit {
       });
       this.formcontrolValueChanged();
   
-   
+      this.route.params.subscribe(
+        p =>{
+  
+          let idnew = p.id as number;
+          this.idcheck  =isNaN(idnew);
+       
+       if(this.idcheck == false){
+     
+        this.Produt$Id = this.productservice.getProduct(idnew);
+        this.Produt$Id.subscribe( data =>{
+  
+          if(data)
+          {
+            this.visiblesearchbar = false;
+            this.visible=true;
+           this.ProductForm.get("title")?.setValue(data.title);
+           this.ProductForm.get("price")?.setValue(data.price);
+           this.ProductForm.get("quantity")?.setValue(data.quantity);
+           this.ProductForm.get("colour")?.setValue(data.colour);
+           this.ProductForm.get("inStock")?.setValue(data.inStock);
+           this.ProductForm.get("id")?.setValue(idnew);
+         
+          }
+        });
+        this.visible=false; 
+        this.visiblesearchbar = true; 
+      
+       }
+       else if(this.idcheck == true){
+        console.log("Value is Not a Number"); 
+      }
+    
+         }
+      );
+  
   
   
     }
@@ -77,6 +123,30 @@ export class UpdateProductComponent implements OnInit {
        
       });
     }
+
+    findProduct(){
+      this.Product$ = this.productservice.getProduct(this.ProductForm.value.id);
+     this.Product$.subscribe(data => {
+       
+       if(data)
+     {
+       
+      this.ProductForm.get("title")?.setValue(data.title);
+      this.ProductForm.get("price")?.setValue(data.price);
+      this.ProductForm.get("quantity")?.setValue(data.quantity);
+      this.ProductForm.get("colour")?.setValue(data.colour);
+      this.ProductForm.get("inStock")?.setValue(data.inStock);
+      this.visible=true;
+    
+     }
+    
+     
+     });
+     this.visible=false; 
+    
+    }
+  
+    
   
     updateProduct(){
   
@@ -98,4 +168,6 @@ export class UpdateProductComponent implements OnInit {
       )
       
     }
+
+  
 }

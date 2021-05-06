@@ -30,6 +30,24 @@ import { UpdateProductComponent } from './Operations/update-product/update-produ
 import { DeleteProductComponent } from './Operations/delete-product/delete-product.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
+
+
+
+  const ProductOperationsRoute : Routes = [
+    {
+      path : 'products',
+      component : HomeComponent
+    },
+    {
+      path : 'update-product/:id',
+      component : UpdateProductComponent
+    },
+    {
+      path : 'find-product/:id',
+      component : FindProductComponent
+    }
+  ];
 
 @NgModule({
   declarations: [
@@ -49,6 +67,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    AppRoutingModule,
+    RouterModule.forChild(ProductOperationsRoute),
 
 
 
@@ -65,7 +85,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     MatCheckboxModule,
     MatSelectModule,
     MatTabsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
